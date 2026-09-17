@@ -53,10 +53,26 @@ python3 -m pip install psutil
 
 ## Start
 
+Linux und Windows mit Python:
+
 ```bash
 cd .../netzwerk_monitor
 python3 main.py
 ```
+
+Unter Windows kann alternativ `python main.py` verwendet werden. Als eigenstaendige Anwendung:
+
+- Linux: `dist/main`
+- Windows: `dist/main.exe`
+
+Der Build muss auf dem jeweiligen Zielsystem erfolgen:
+
+```bash
+python3 -m pip install pyinstaller
+python3 -m PyInstaller --clean --noconfirm main.spec
+```
+
+Unter Windows PowerShell lauten die entsprechenden Befehle `python -m pip install pyinstaller` und `python -m PyInstaller --clean --noconfirm main.spec`. Die fertige EXE liegt danach in `dist/`.
 
 Das Standardziel fuer den Ping-Test ist `1.1.1.1`.
 
@@ -92,6 +108,8 @@ Beim ersten Messzyklus gibt es noch keinen Vergleichswert. Deshalb wird der Durc
 ## Logging
 
 Die Anwendung schreibt nach `netzwerk_monitor.log`. Die Datei wird bei 1 MB rotiert; bis zu drei Backups bleiben erhalten.
+
+Beim Start als EXE liegt die Logdatei im `dist/`-Verzeichnis neben der Anwendung.
 
 Das Log enthaelt:
 
